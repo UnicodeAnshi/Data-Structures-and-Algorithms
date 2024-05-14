@@ -10,6 +10,6 @@ public:
             cursum+=nums[i]-nums[i-k];
             maxsum=max(maxsum,cursum/k);//sliding the window to get the maximum subarray
         }
-        return maxsum;//returning final value
+        return maxsum;
     }
 };
