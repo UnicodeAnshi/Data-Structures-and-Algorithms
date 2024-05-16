@@ -8,7 +8,7 @@ import pandas as pd
 #setting up API service
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyCT5ZqsK4tlX9PBrZ5SWKzekux2RsAOHFs"
+DEVELOPER_KEY = ""
 youtube = googleapiclient.discovery.build(
     api_service_name, api_version, developerKey=DEVELOPER_KEY)
 def get_comments(video_id, max_comments):
@@ -61,3 +61,20 @@ with open(csv_file,mode='w',newline='',encoding='utf-8')as file:
     for comment in comments:
       writer.writerow([comment])
 df=pd.read_csv("translated_comments.csv")
+print(f"Number of comments extracted: {len(comments)}")
+#converting to file
+csv_file="translated_comments.csv"
+
+with open(csv_file,mode='w',newline='',encoding='utf-8')as file:
+    writer= csv.writer(file)
+    for comment in comments:
+      writer.writerow([comment])
+df=pd.read_csv("translated_comments.csv")
+def change_emoji(text):
+    return emoji.demojize(text)
+
+df=df.applymap(change_emoji)
+df.to_csv("translated_comments.csv",index=False)
+#converting all uppercase letters to lower ones
+df=df.applymap(lambda x: x.lower()if isinstance(x,str)else x)
+df.to_csv("translated_comments.csv",index=False)
