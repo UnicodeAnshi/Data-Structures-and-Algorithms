@@ -1,10 +1,7 @@
 //{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
-
 // } Driver Code Ends
-
-
 class disjointset{
     vector<int> size,parent,rank;
     public:
@@ -44,9 +41,7 @@ class disjointset{
         }
 
 };
-class Solution
-{
-    
+class Solution {
 	public:
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int V, vector<vector<int>> adj[])
