@@ -1,13 +1,13 @@
-//{ Driver Code Starts
+
 #include<bits/stdc++.h>
 using namespace std;
-// } Driver Code Ends
+
 class disjointset{
-    vector<int> size,parent,rank;
+    vector<int> size,parent;
     public:
         disjointset(int n){
-            size.resize(n+1,1);
-            parent.resize(n+1);
+            size.resize(n,1);
+            parent.resize(n);
 
             for(int i=0;i<=n;i++){
                 parent[i]=i;
@@ -17,7 +17,7 @@ class disjointset{
             if(u==parent[u])
                 return u;
 
-            return findUlp(parent[u]);
+            return parent[u]=findUlp(parent[u]);
         }
         void unionbysize(int u,int v){
             int ulp_u=findUlp(u);
@@ -26,83 +26,60 @@ class disjointset{
             if(ulp_u==ulp_v)
                 return;
 
-            if(size[ulp_u] <size[ulp_v]){
+             if(size[ulp_u] <size[ulp_v]){
                 parent[ulp_u]=ulp_v;
                 size[ulp_v]+=size[ulp_u];
             }       
-            else if(size[ulp_u]>size[ulp_v]){
-                parent[ulp_v]=ulp_u;
-                size[ulp_u]+=size[ulp_v];
-            } 
             else{
                 parent[ulp_v]=ulp_u;
                 size[ulp_u]+=size[ulp_v];
             }                      
         }
-
 };
+
 class Solution {
 	public:
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
-    int spanningTree(int V, vector<vector<int>> adj[])
-    {
-        vector <pair<int,pair<int,int>>> edges;
-        for(int i=0;i<V;i++){
-            for(auto itr:adj[i]){
-                int node=itr[0];
-                int weight=itr[1];
-                
-                edges.push_back({weight,{i,node}});
-            }
-        }
-        //sorting
+    int spanningTree(int V, vector<vector<int>> edges){
         sort(edges.begin(),edges.end());
         disjointset ds(V);
         int mswt=0;
-        for(auto itr: edges){
-            int wt=itr.first;
-            int node=itr.second.first;
-            int adjnode=itr.second.second;
+
+        for(auto &itr: edges){
+            int wt=itr[0];
+            int u=itr[1];
+            int v=itr[2];
             
-            if(ds.findUlp(node)!=ds.findUlp(adjnode)){
+            if(ds.findUlp(u)!=ds.findUlp(v)){
                 mswt+=wt;
-                ds.unionbysize(node,adjnode);
+                ds.unionbysize(u,v);
             }
         }
         return mswt;
     }
 };
 
-//{ Driver Code Starts.
-
-
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--) {
-        int V, E;
-        cin >> V >> E;
-        vector<vector<int>> adj[V];
-        int i=0;
-        while (i++<E) {
-            int u, v, w;
-            cin >> u >> v >> w;
-            vector<int> t1,t2;
-            t1.push_back(v);
-            t1.push_back(w);
-            adj[u].push_back(t1);
-            t2.push_back(u);
-            t2.push_back(w);
-            adj[v].push_back(t2);
+        int V;
+        cin >> V ;
+        vector<vector<int>> graph(V,vector<int>(V,0));
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
+                cin>>graph[i][j];
+            }
         }
+        vector<vector<int>> adj;
+        for(int i=0;i<V;i++){
+            for(int j=i+1;j<V;j++){
+                if(graph[i][j]!=0){
+                    adj.push_back({graph[i][j],i,j});
+                }
+        }
+    }
         
         Solution obj;
-    	cout << obj.spanningTree(V, adj) << "\n";
-    }
+    	cout <<"Minimum Spanning Tree Weight:"<< obj.spanningTree(V, adj) << "\n";
 
     return 0;
 }
-
-
-// } Driver Code Ends
