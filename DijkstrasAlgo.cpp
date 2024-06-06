@@ -43,8 +43,6 @@ void dijkstras(vector<vector<int>> &graph,int src,int V){
         printPath(parent,i);
         cout<<" : "<<dist[i]<<endl;
     }
-
-
 }
 int main(){
     int n;

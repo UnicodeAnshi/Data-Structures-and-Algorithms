@@ -3,7 +3,7 @@ using namespace std;
 
 bool isBipartite(vector<vector<int>>&g,int V,int node,vector<int>&color)
 {
-    	queue<int>q;
+	    queue<int>q;
     	q.push(node);
     	color[node]=1;
     	while(!q.empty())
@@ -21,6 +21,7 @@ bool isBipartite(vector<vector<int>>&g,int V,int node,vector<int>&color)
             		}
         		}
     	}
+		return true;
 }
 
 bool bipartite(vector<vector<int>>&g,int V)

@@ -1,9 +1,13 @@
+//priority_queue<int, vector<int>, decltype(&customCompare)> minHeap(customCompare);
+// bool customCompare(int a, int b) {
+//     return a > b; // Inverted to create a min-heap
+// }
+
 #include<bits/stdc++.h>
 using namespace std;
 int SpanningTree(int V,vector<vector<pair<int,int>>>adj){
     vector <int> vis(V,0);
     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-
     pq.push({0,0});
     int sum=0;
     while(!pq.empty()){
@@ -16,8 +20,8 @@ int SpanningTree(int V,vector<vector<pair<int,int>>>adj){
         vis[node]=1;
         sum+=wt;
         for(auto it: adj[node]){
-            int adjNode =it.first;
-            int edw=it.second;
+            int adjNode =it.second;
+            int edw=it.first;
             if(!vis[adjNode]){
                 pq.push({edw,adjNode});
             }
@@ -44,7 +48,7 @@ int main(){
             u=i;
             v=j;
             w=graph[i][j];
-            adj[u].emplace_back(v,w);
+            adj[u].emplace_back(w,v);
         }
        }
     }

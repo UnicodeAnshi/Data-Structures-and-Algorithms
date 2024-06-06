@@ -44,10 +44,8 @@ void bellman_ford(vector<vector<int>>& edges, int V, int s) {
             if (dist[i] == INT_MAX) {
                 cout << "Infinity";
             } else {
-                //cout << i + 1<<" ";
                 printPath(parent, i);
                 cout <<":"<< dist[i];
-                //cout << s + 1 << " ";
             }
             cout << endl;
     }

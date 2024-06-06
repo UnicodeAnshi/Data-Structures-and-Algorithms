@@ -14,6 +14,7 @@ void short_distance(vector<vector<int>>&matrix){
             }
         }
     }
+
     for(int k=0;k<n;k++){
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -23,6 +24,7 @@ void short_distance(vector<vector<int>>&matrix){
             }
         }
     }
+    
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             if (matrix[i][j] == INT_MAX) {

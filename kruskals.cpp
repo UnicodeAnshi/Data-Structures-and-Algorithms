@@ -23,9 +23,6 @@ class disjointset{
             int ulp_u=findUlp(u);
             int ulp_v=findUlp(v);
 
-            if(ulp_u==ulp_v)
-                return;
-
              if(size[ulp_u] <size[ulp_v]){
                 parent[ulp_u]=ulp_v;
                 size[ulp_v]+=size[ulp_u];
@@ -52,7 +49,7 @@ class Solution {
             
             if(ds.findUlp(u)!=ds.findUlp(v)){
                 mswt+=wt;
-                ds.unionbysize(u,v);
+                ds.unionbysize(u,v); 
             }
         }
         return mswt;

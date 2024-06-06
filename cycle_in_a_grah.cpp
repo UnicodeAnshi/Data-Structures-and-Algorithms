@@ -55,6 +55,4 @@ int main(){
     else{
         cout<<"No Cycle Exists";
     }
-
-
 }
