@@ -1,0 +1,4 @@
+My name is anshika sharma.
+I am 20 years old
+i live in dehradun
+Vowels will be extracted from these sentences.
