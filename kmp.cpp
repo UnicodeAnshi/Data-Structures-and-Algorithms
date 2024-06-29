@@ -42,7 +42,7 @@ class Solution
                     ans.push_back(i-m+1);
                     j=lps[j-1];
                 }
-                if(i<n && pat[i]!=pat[j]){
+                if(i<n && txt[i]!=pat[j]){
                     if(j!=0){
                         j=lps[j-1];
                     }

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-//using DFS to detect a cycle in a graph
+//using DFS to detect a cycle in a d. graph
 //to check if a graph is cyclic on the ame path it has to visited again
 bool dfsCheck(int i,vector<vector<int>> &adj,vector<int> &vis,vector<int> &pathVis){
     vis[i]=1;

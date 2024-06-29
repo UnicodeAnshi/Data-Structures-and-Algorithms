@@ -1,11 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 void printPath(vector<int> &parent,int j){
     if(parent[j]==-1)
         return;
     cout<<parent[j]+1<<" ";
     printPath(parent,parent[j]);
 }
+
 int minDistance(vector<int> dist,vector<bool> sptSet,int V){
     int min=INT_MAX,min_index;
     for(int v=0;v<V;v++){
@@ -16,6 +18,7 @@ int minDistance(vector<int> dist,vector<bool> sptSet,int V){
     }
     return min_index;
 }
+
 void dijkstras(vector<vector<int>> &graph,int src,int V){
     //initialsing the values
     vector<int> dist(V,INT_MAX);
@@ -44,6 +47,7 @@ void dijkstras(vector<vector<int>> &graph,int src,int V){
         cout<<" : "<<dist[i]<<endl;
     }
 }
+
 int main(){
     int n;
     cin>>n;
